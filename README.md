@@ -99,4 +99,7 @@ En resumen, esta base de datos proporciona una estructura para organizar y gesti
                              | idTipoReserva(PK) |
                              | tipo              |
                              +-------------------+
+
+![image](https://github.com/SantiagoMin/Gestion-complejo-canchas-de-padel/assets/100095294/9e105180-c9e0-4127-80a7-a17e71667b2e)
+
 ``
