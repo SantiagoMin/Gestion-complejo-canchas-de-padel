@@ -3,7 +3,7 @@
 
 ### Problema:
 
-Nuestro equipo de desarrollo está trabajando en un sistema de gestión de reservas para restaurantes, y nos enfrentamos a la necesidad de diseñar una base de datos eficiente que pueda manejar todas las operaciones relacionadas con las reservas de manera óptima.
+Trabajare en un sistema de gestión de reservas para restaurantes, y nos enfrentamos a la necesidad de diseñar una base de datos eficiente que pueda manejar todas las operaciones relacionadas con las reservas de manera óptima.
 
 ### Descripción del Problema:
 
@@ -100,6 +100,9 @@ En resumen, esta base de datos proporciona una estructura para organizar y gesti
                              | tipo              |
                              +-------------------+
 
-![image](https://github.com/SantiagoMin/Gestion-complejo-canchas-de-padel/assets/100095294/9e105180-c9e0-4127-80a7-a17e71667b2e)
 
-``
+
+```
+
+
+![alt text](https://github.com/SantiagoMin/Gestion-complejo-canchas-de-padel/assets/100095294/9e105180-c9e0-4127-80a7-a17e71667b2e)
