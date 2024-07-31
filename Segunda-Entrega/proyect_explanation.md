@@ -170,6 +170,86 @@ A continuación se presentan las funciones SQL utilizadas en la base de datos `p
        - Desactivar el modo seguro para permitir la actualización masiva: `SET SQL_SAFE_UPDATES = 0;`
        - Aplicar el descuento: `SELECT aplicar_descuento(10);` - Actualiza los precios con un descuento del 10% y retorna un mensaje de éxito.
        - Reactivar el modo seguro: `SET SQL_SAFE_UPDATES = 1;`
+      
+### Reseña de Procedimientos SQL
+
+A continuación se presentan los procedimientos almacenados utilizados en la base de datos `proyecto_padel` para realizar ciertas validaciones y consultas específicas.
+
+1. **`verificar_telefono`**
+
+   - **Descripción**: Este procedimiento verifica si un número de teléfono tiene al menos 9 dígitos. Si el número de teléfono es menor a 9 dígitos, se genera una excepción con un mensaje de error.
+   - **Firma**: `CREATE PROCEDURE verificar_telefono(p_telefono VARCHAR(20))`
+   - **Detalles**:
+     - **Entrada**: `p_telefono` - Número de teléfono a verificar.
+     - **Acción**: Comprueba la longitud del número de teléfono y lanza un error si la longitud es menor a 9 dígitos.
+     - **Ejemplo de Uso**: `CALL verificar_telefono('12345678');` - Lanza un error si el número de teléfono tiene menos de 9 dígitos.
+
+2. **`obtener_disponibilidad_cancha`**
+
+   - **Descripción**: Este procedimiento consulta la disponibilidad de una cancha en un rango de fechas especificado. Devuelve los turnos disponibles para una cancha específica.
+   - **Firma**: `CREATE PROCEDURE obtener_disponibilidad_cancha(IN p_id_cancha INT, IN p_fecha_inicio DATETIME, IN p_fecha_fin DATETIME)`
+   - **Detalles**:
+     - **Entrada**: 
+       - `p_id_cancha` - Identificador de la cancha para la cual se desea consultar la disponibilidad.
+       - `p_fecha_inicio` - Fecha y hora de inicio del rango para verificar la disponibilidad.
+       - `p_fecha_fin` - Fecha y hora de fin del rango para verificar la disponibilidad.
+     - **Salida**: Lista de turnos y su disponibilidad (TRUE o FALSE) para la cancha especificada.
+     - **Ejemplo de Uso**: `CALL obtener_disponibilidad_cancha(2, '2023-07-01 00:00:00', '2025-07-02 23:59:59');` - Retorna los turnos disponibles para la cancha con ID 2 en el rango de fechas proporcionado.
+
+### Reseña de Triggers SQL
+
+A continuación se describen los triggers configurados en la base de datos `proyecto_padel`, los cuales automatizan ciertas acciones en la base de datos y aseguran la integridad de los datos.
+
+1. **`before_insert_cliente`**
+
+   - **Descripción**: Este trigger se activa antes de que se inserte un nuevo registro en la tabla `CLIENTE`. Su función es validar el número de teléfono del cliente utilizando el procedimiento `verificar_telefono`. Si el número de teléfono no tiene al menos 9 dígitos, se genera una excepción.
+   - **Firma**: `CREATE TRIGGER before_insert_cliente BEFORE INSERT ON CLIENTE FOR EACH ROW BEGIN CALL verificar_telefono(NEW.telefono); END`
+   - **Detalles**:
+     - **Evento**: Antes de la inserción (`BEFORE INSERT`).
+     - **Acción**: Llama al procedimiento `verificar_telefono` para validar el número de teléfono.
+     - **Ejemplo de Uso**: Si intentas insertar un cliente con un número de teléfono que no cumple con el requisito de longitud, el trigger generará un error y evitará la inserción.
+
+2. **`before_update_cliente`**
+
+   - **Descripción**: Este trigger se activa antes de que se actualice un registro existente en la tabla `CLIENTE`. Verifica la validez del número de teléfono utilizando el procedimiento `verificar_telefono`. Si el número es menor a 9 dígitos, se genera una excepción.
+   - **Firma**: `CREATE TRIGGER before_update_cliente BEFORE UPDATE ON CLIENTE FOR EACH ROW BEGIN CALL verificar_telefono(NEW.telefono); END`
+   - **Detalles**:
+     - **Evento**: Antes de la actualización (`BEFORE UPDATE`).
+     - **Acción**: Llama al procedimiento `verificar_telefono` para validar el número de teléfono antes de permitir la actualización del registro.
+     - **Ejemplo de Uso**: Si intentas actualizar un cliente con un número de teléfono no válido, el trigger evitará la actualización y generará un error.
+
+3. **`after_precio_update`**
+
+   - **Descripción**: Este trigger se activa después de que se actualice un registro en la tabla `PRECIOS`. Registra el cambio de precio en la tabla `HISTORIAL_PRECIO`, almacenando el ID de la cancha afectada, el precio antiguo, el precio nuevo, y la fecha y hora del cambio.
+   - **Firma**: `CREATE TRIGGER after_precio_update AFTER UPDATE ON PRECIOS FOR EACH ROW BEGIN INSERT INTO HISTORIAL_PRECIO (id_cancha, precio_antiguo, precio_nuevo, fecha_cambio) VALUES (OLD.id_cancha, OLD.precio_por_hora, NEW.precio_por_hora, NOW()); END`
+   - **Detalles**:
+     - **Evento**: Después de la actualización (`AFTER UPDATE`).
+     - **Acción**: Inserta un registro en `HISTORIAL_PRECIO` con la información sobre el cambio en los precios.
+     - **Ejemplo de Uso**: Cuando se actualiza el precio de una cancha, se registra automáticamente el cambio en la tabla de historial.
+       
+### Reseña de Vistas SQL
+
+1. **`top_10_clientes_ventas`**
+   - Muestra los 10 clientes con mayores ventas totales.
+   - Basada en la suma de productos vendidos por cliente.
+
+2. **`ranking_clientes_reservas`**
+   - Lista los clientes ordenados por el número de reservas confirmadas.
+   - Incluye un ranking basado en el total de reservas.
+
+3. **`reactivacion_clientes`**
+   - Identifica los 10 clientes con menos reservas.
+   - Utilizada para estrategias de marketing de reactivación.
+
+4. **`gastos_por_mes`**
+   - Detalla los gastos mensuales agrupados por concepto.
+   - Muestra el total de gastos por mes y concepto.
+
+5. **`vista_precios_referencia`**
+   - Presenta los precios de las canchas y sus descuentos aplicados.
+   - Incluye precios originales y con descuentos del 10%, 15%, y 20%.
+
+
 
 ### Problemática Resuelta:
 
