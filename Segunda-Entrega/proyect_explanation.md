@@ -131,6 +131,46 @@ Esta base de datos está diseñada para gestionar reservas en complejos de padel
       - `precio_nuevo`: Precio nuevo después del cambio.
       - `fecha_cambio`: Fecha y hora del cambio de precio.
 
+
+
+## Objetos que componen este modelo de datos
+
+### Reseña de Funciones SQL
+
+A continuación se presentan las funciones SQL utilizadas en la base de datos `proyecto_padel` para facilitar y automatizar ciertos procesos relacionados con las ventas y precios.
+
+1. **`ventas_por_producto`**
+
+   - **Descripción**: Esta función calcula el total de ventas de un producto específico. Utiliza el `id_producto` para sumar todas las cantidades vendidas del producto en la tabla `VENTAS_PRODUCTOS`.
+   - **Firma**: `CREATE FUNCTION ventas_por_producto(p_id_producto INT) RETURNS DECIMAL(10, 2)`
+   - **Detalles**:
+     - **Entrada**: `p_id_producto` - Identificador del producto para el cual se desea calcular el total de ventas.
+     - **Salida**: Total de ventas como un valor decimal.
+     - **Ejemplo de Uso**: `SELECT ventas_por_producto(1);` - Retorna el total de ventas del producto con ID 1.
+
+2. **`aplicar_descuento_precio_cancha`**
+
+   - **Descripción**: Esta función calcula el nuevo precio de una cancha después de aplicar un descuento. Utiliza el `id_cancha` para obtener el precio original y aplica un descuento especificado por `p_descuento`.
+   - **Firma**: `CREATE FUNCTION aplicar_descuento_precio_cancha(p_id_cancha INT, p_descuento DECIMAL(5, 2)) RETURNS DECIMAL(10, 2)`
+   - **Detalles**:
+     - **Entrada**: 
+       - `p_id_cancha` - Identificador de la cancha para la cual se desea aplicar el descuento.
+       - `p_descuento` - Porcentaje de descuento a aplicar.
+     - **Salida**: Nuevo precio después de aplicar el descuento.
+     - **Ejemplo de Uso**: `SELECT aplicar_descuento_precio_cancha(1, 15) AS precio_con_descuento;` - Retorna el precio de la cancha con ID 1 después de aplicar un descuento del 15%.
+
+3. **`aplicar_descuento`**
+
+   - **Descripción**: Esta función actualiza todos los precios de las canchas aplicando un descuento global. Se usa para ajustar el precio de todas las canchas en la tabla `PRECIOS` basándose en el porcentaje de descuento proporcionado.
+   - **Firma**: `CREATE FUNCTION aplicar_descuento(p_descuento DECIMAL(5, 2)) RETURNS VARCHAR(255)`
+   - **Detalles**:
+     - **Entrada**: `p_descuento` - Porcentaje de descuento a aplicar a todos los precios.
+     - **Salida**: Mensaje de confirmación indicando que los precios han sido actualizados con el descuento aplicado.
+     - **Ejemplo de Uso**: 
+       - Desactivar el modo seguro para permitir la actualización masiva: `SET SQL_SAFE_UPDATES = 0;`
+       - Aplicar el descuento: `SELECT aplicar_descuento(10);` - Actualiza los precios con un descuento del 10% y retorna un mensaje de éxito.
+       - Reactivar el modo seguro: `SET SQL_SAFE_UPDATES = 1;`
+
 ### Problemática Resuelta:
 
 Esta base de datos permite gestionar eficientemente el proceso de reserva en complejos de padel, desde la información de los clientes hasta la disponibilidad de canchas y el registro de reservas. Algunos aspectos que aborda incluyen:
