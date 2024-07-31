@@ -131,6 +131,9 @@ Esta base de datos está diseñada para gestionar reservas en complejos de padel
       - `precio_nuevo`: Precio nuevo después del cambio.
       - `fecha_cambio`: Fecha y hora del cambio de precio.
 
+### ESQUEMA DEL MODELO
+
+![alt text](https://github.com/user-attachments/assets/f7316bc9-258a-4013-8d07-a7e9f0006802)
 
 
 ## Objetos que componen este modelo de datos
@@ -248,11 +251,6 @@ A continuación se describen los triggers configurados en la base de datos `proy
 5. **`vista_precios_referencia`**
    - Presenta los precios de las canchas y sus descuentos aplicados.
    - Incluye precios originales y con descuentos del 10%, 15%, y 20%.
-
-
-### ESQUEMA DEL MODELO
-
-![alt text](https://github.com/user-attachments/assets/f7316bc9-258a-4013-8d07-a7e9f0006802)
 
 
 ### Problemática Resuelta:
