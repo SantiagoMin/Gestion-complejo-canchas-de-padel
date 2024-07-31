@@ -250,6 +250,10 @@ A continuación se describen los triggers configurados en la base de datos `proy
    - Incluye precios originales y con descuentos del 10%, 15%, y 20%.
 
 
+### ESQUEMA DEL MODELO
+
+![alt text](https://github.com/user-attachments/assets/f7316bc9-258a-4013-8d07-a7e9f0006802)
+
 
 ### Problemática Resuelta:
 
@@ -261,9 +265,5 @@ Esta base de datos permite gestionar eficientemente el proceso de reserva en com
 - Registro detallado de las reservas realizadas, incluyendo la fecha, cliente, cancha, empleado y tipo de reserva.
 
 En resumen, esta base de datos proporciona una estructura para organizar y gestionar eficientemente las operaciones de reserva en complejos de padel, lo que contribuye a mejorar el servicio ofrecido a los clientes y optimizar los tiempos muertos.
-
-### ESQUEMA DEL MODELO
-
-![alt text](https://github.com/user-attachments/assets/f7316bc9-258a-4013-8d07-a7e9f0006802)
 
 
