@@ -38,8 +38,8 @@ documento: Documento de identificación del cliente (único).
 2. **EMPLEADO**:
 
 Contiene información sobre los empleados involucrados en el proceso de reservas y de atención.
--Atributos:
--id_empleado: Identificador único del empleado.
+  -Atributos:
+  -id_empleado: Identificador único del empleado.
 -nombre: Nombre del empleado.
 -telefono: Número de teléfono del empleado.
 -correo: Correo electrónico del empleado.
