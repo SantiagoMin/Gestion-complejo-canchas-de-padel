@@ -24,124 +24,112 @@ Esta base de datos está diseñada para gestionar reservas en complejos de padel
 
 ### Tablas:
 
-1. **CLIENTE**:
+1. **CLIENTE**
+   - Almacena información sobre los clientes que realizan reservas.
+   - Atributos:
+     - `id_cliente`: Identificador único del cliente.
+     - `nombre`: Nombre del cliente.
+     - `telefono`: Número de teléfono del cliente.
+     - `correo`: Correo electrónico del cliente.
+     - `direccion`: Dirección del cliente.
+     - `documento`: Documento de identificación del cliente (único).
 
-Almacena información sobre los clientes que realizan reservas.
-Atributos:
-id_cliente: Identificador único del cliente.
-nombre: Nombre del cliente.
-telefono: Número de teléfono del cliente.
-correo: Correo electrónico del cliente.
-direccion: Dirección del cliente.
-documento: Documento de identificación del cliente (único).
+2. **EMPLEADO**
+   - Contiene información sobre los empleados involucrados en el proceso de reservas y de atención.
+   - Atributos:
+     - `id_empleado`: Identificador único del empleado.
+     - `nombre`: Nombre del empleado.
+     - `telefono`: Número de teléfono del empleado.
+     - `correo`: Correo electrónico del empleado.
+     - `direccion`: Dirección del empleado.
+     - `documento`: Documento de identificación del empleado (único).
 
-2. **EMPLEADO**:
+3. **DUEÑO**
+   - Guarda datos sobre los dueños de los complejos (no se utiliza explícitamente en el proceso de reservas por la confidencialidad de la información).
+   - Atributos:
+     - `id_dueno`: Identificador único del dueño.
+     - `nombre`: Nombre del dueño.
+     - `telefono`: Número de teléfono del dueño.
+     - `correo`: Correo electrónico del dueño.
+     - `direccion`: Dirección del dueño.
+     - `documento`: Documento de identificación del dueño (único).
 
-Contiene información sobre los empleados involucrados en el proceso de reservas y de atención.
-  -Atributos:
-  -id_empleado: Identificador único del empleado.
--nombre: Nombre del empleado.
--telefono: Número de teléfono del empleado.
--correo: Correo electrónico del empleado.
--direccion: Dirección del empleado.
--documento: Documento de identificación del empleado (único).
+4. **TIPO_CANCHA**
+   - Define diferentes tipos de cancha para clasificarlas según sus cualidades.
+   - Atributos:
+     - `id_tipo_cancha`: Identificador único del tipo de cancha.
+     - `tipo_cancha`: Descripción del tipo de cancha.
 
-3. **DUEÑO**:
+5. **CANCHA**
+   - Almacena información sobre las canchas y los complejos.
+   - Atributos:
+     - `id_cancha`: Identificador único de la cancha.
+     - `numero_cancha`: Número de la cancha.
+     - `tipo_cancha`: Tipo de cancha (referencia a `TIPO_CANCHA`).
+     - `numero_complejo`: Número del complejo al que pertenece la cancha.
+     - `descripcion_complejo`: Descripción del complejo.
+     - `direccion_complejo`: Dirección del complejo.
+     - `dueno`: Dueño del complejo (referencia a `DUEÑO`).
 
-Guarda datos sobre los dueños de los complejos (no se utiliza explícitamente en el proceso de reservas por la confidencialidad de la información).
-Atributos:
-id_dueno: Identificador único del dueño.
-nombre: Nombre del dueño.
-telefono: Número de teléfono del dueño.
-correo: Correo electrónico del dueño.
-direccion: Dirección del dueño.
-documento: Documento de identificación del dueño (único).
+6. **DISPONIBILIDAD**
+   - Contiene información sobre los turnos disponibles para cada cancha.
+   - Atributos:
+     - `id_turno`: Identificador único del turno.
+     - `id_reserva`: Identificador de la reserva asociada (si la hay).
+     - `id_cancha`: Identificador de la cancha.
+     - `disponibilidad`: Estado de disponibilidad del turno (TRUE o FALSE).
 
-4. **TIPO_CANCHA**:
+7. **RESERVA**
+   - Registra las reservas realizadas por los clientes.
+   - Atributos:
+     - `id_reserva`: Identificador único de la reserva.
+     - `id_cliente`: Identificador del cliente que realizó la reserva (referencia a `CLIENTE`).
+     - `id_empleado`: Identificador del empleado que gestionó la reserva (referencia a `EMPLEADO`).
+     - `FECHA`: Fecha y hora de la reserva.
+     - `estado`: Estado de la reserva (por ejemplo, "confirmada", "cancelada").
 
-Define diferentes tipos de cancha para clasificarlas según sus cualidades.
-Atributos:
-id_tipo_cancha: Identificador único del tipo de cancha.
-tipo_cancha: Descripción del tipo de cancha.
+8. **PRECIOS**
+   - Define los precios por hora de las canchas.
+   - Atributos:
+     - `id_precio`: Identificador único del precio.
+     - `id_cancha`: Identificador de la cancha (referencia a `CANCHA`).
+     - `precio_por_hora`: Precio por hora de la cancha.
 
-5. **CANCHA**:
+9. **PRODUCTOS**
+   - Almacena información sobre los productos disponibles para la venta en el complejo de pádel.
+   - Atributos:
+     - `id_producto`: Identificador único del producto.
+     - `nombre_producto`: Nombre del producto.
+     - `descripcion_producto`: Descripción del producto.
+     - `precio`: Precio del producto.
 
-Almacena información sobre las canchas y los complejos.
-Atributos:
-id_cancha: Identificador único de la cancha.
-numero_cancha: Número de la cancha.
-tipo_cancha: Tipo de cancha (referencia a TIPO_CANCHA).
-numero_complejo: Número del complejo al que pertenece la cancha.
-descripcion_complejo: Descripción del complejo.
-direccion_complejo: Dirección del complejo.
-dueno: Dueño del complejo (referencia a DUEÑO).
+10. **GASTOS**
+    - Almacena información sobre los gastos asociados a las canchas.
+    - Atributos:
+      - `id_gasto`: Identificador único del gasto.
+      - `numero_complejo`: Número del complejo (referencia a `CANCHA`).
+      - `numero_factura`: Número de la factura.
+      - `proveedor`: Proveedor del gasto.
+      - `concepto_factura`: Concepto del gasto.
+      - `importe_factura`: Importe del gasto.
+      - `fecha_gasto`: Fecha del gasto.
 
-6. **DISPONIBILIDAD**:
+11. **VENTAS_PRODUCTOS**
+    - Relaciona las ventas de productos con las reservas.
+    - Atributos:
+      - `id_venta`: Identificador único de la venta.
+      - `id_reserva`: Identificador de la reserva asociada (referencia a `RESERVA`).
+      - `id_producto`: Identificador del producto vendido (referencia a `PRODUCTOS`).
+      - `cantidad`: Cantidad de producto vendido.
 
-Contiene información sobre los turnos disponibles para cada cancha.
-Atributos:
-id_turno: Identificador único del turno.
-id_reserva: Identificador de la reserva asociada (si la hay).
-id_cancha: Identificador de la cancha.
-disponibilidad: Estado de disponibilidad del turno (TRUE o FALSE).
-
-7. **RESERVA**:
-
-Registra las reservas realizadas por los clientes.
-Atributos:
-id_reserva: Identificador único de la reserva.
-id_cliente: Identificador del cliente que realizó la reserva (referencia a CLIENTE).
-id_empleado: Identificador del empleado que gestionó la reserva (referencia a EMPLEADO).
-FECHA: Fecha y hora de la reserva.
-estado: Estado de la reserva (por ejemplo, "confirmada", "cancelada").
-
-8. **PRECIOS**:
-
-Define los precios por hora de las canchas.
-Atributos:
-id_precio: Identificador único del precio.
-id_cancha: Identificador de la cancha (referencia a CANCHA).
-precio_por_hora: Precio por hora de la cancha.
-
-9. **PRODUCTOS**:
-
-Almacena información sobre los productos disponibles para la venta en el complejo de pádel.
-Atributos:
-id_producto: Identificador único del producto.
-nombre_producto: Nombre del producto.
-descripcion_producto: Descripción del producto.
-precio: Precio del producto.
-
-10. **GASTOS**:
-
-Almacena información sobre los gastos asociados a las canchas.
-Atributos:
-id_gasto: Identificador único del gasto.
-numero_complejo: Número del complejo (referencia a CANCHA).
-numero_factura: Número de la factura.
-proveedor: Proveedor del gasto.
-concepto_factura: Concepto del gasto.
-importe_factura: Importe del gasto.
-fecha_gasto: Fecha del gasto.
-
-11. **VENTAS_PRODUCTOS**:
-
-Relaciona las ventas de productos con las reservas.
-Atributos:
-id_venta: Identificador único de la venta.
-id_reserva: Identificador de la reserva asociada (referencia a RESERVA).
-id_producto: Identificador del producto vendido (referencia a PRODUCTOS).
-cantidad: Cantidad de producto vendido.
-
-12. **HISTORIAL_PRECIO**:
-
-Registra el historial de cambios en los precios de las canchas.
-Atributos:
-id_auditoria: Identificador único del registro de auditoría.
-id_cancha: Identificador de la cancha afectada (referencia a CANCHA).
-precio_antiguo: Precio antiguo antes del cambio.
-precio_nuevo: Precio nuevo después del cambio.
-fecha_cambio: Fecha y hora del cambio de precio.
+12. **HISTORIAL_PRECIO**
+    - Registra el historial de cambios en los precios de las canchas.
+    - Atributos:
+      - `id_auditoria`: Identificador único del registro de auditoría.
+      - `id_cancha`: Identificador de la cancha afectada (referencia a `CANCHA`).
+      - `precio_antiguo`: Precio antiguo antes del cambio.
+      - `precio_nuevo`: Precio nuevo después del cambio.
+      - `fecha_cambio`: Fecha y hora del cambio de precio.
 
 ### Problemática Resuelta:
 
