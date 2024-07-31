@@ -65,6 +65,6 @@ En resumen, esta base de datos proporciona una estructura para organizar y gesti
 
 ### ESQUEMA DEL MODELO
 
+![alt text](https://github.com/user-attachments/assets/f7316bc9-258a-4013-8d07-a7e9f0006802)
 
 
-![alt text](https://github.com/SantiagoMin/Gestion-complejo-canchas-de-padel/assets/100095294/2b3c5b12-914e-4a7e-abbc-84fa1c41f5c0)
