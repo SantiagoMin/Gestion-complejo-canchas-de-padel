@@ -7,7 +7,7 @@ El proyecto se basa en el desarrollo de un sistema integral de gestión de reser
 
 ### Descripción del Problema:
 
-1. **Gestión de Clientes y Empleados**: Necesitamos una base de datos que nos permita registrar la información de los clientes que realizan reservas, así como de los empleados involucrados en el proceso de las mismas. Para en una segunda etapa poder incorporar la compra de productos y la gestion de los pagos.
+1. **Gestión de Clientes y Empleados**: Necesitamos una base de datos que nos permita registrar la información de los clientes que realizan reservas, así como de los empleados involucrados en el proceso de las mismas. En esta segunda etapa incorporamos la compra de productos y la gestion de los precios.
 
 2. **Gestión de Canchas y Disponibilidad**: La base de datos debe permitirnos registrar la disponibilidad de las canchas y las barbacoas, para asi permitirnos realizar promociones puntuales en dias de baja demanda. Esto es fundamental para garantizar una asignación eficiente de las canchas y evitar conflictos de reservas, ya que la mayoria se encuentra en la periferia e incurriria en perdida de tiempo para el cliente.
 
