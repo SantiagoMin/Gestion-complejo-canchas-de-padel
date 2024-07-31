@@ -9,9 +9,9 @@ El proyecto se basa en el desarrollo de un sistema integral de gestión de reser
 
 1. **Gestión de Clientes y Empleados**: Necesitamos una base de datos que nos permita registrar la información de los clientes que realizan reservas, así como de los empleados involucrados en el proceso de las mismas. En esta segunda etapa incorporamos la compra de productos y la gestion de los precios.
 
-2. **Gestión de Canchas y Disponibilidad**: La base de datos debe permitirnos registrar la disponibilidad de las canchas y las barbacoas, para asi permitirnos realizar promociones puntuales en dias de baja demanda. Esto es fundamental para garantizar una asignación eficiente de las canchas y evitar conflictos de reservas, ya que la mayoria se encuentra en la periferia e incurriria en perdida de tiempo para el cliente.
+2. **Gestión de Canchas y Disponibilidad**: La base de datos debe permitirnos registrar la disponibilidad de las canchas , para asi permitirnos realizar promociones puntuales en dias de baja demanda. Esto es fundamental para garantizar una asignación eficiente de las canchas y evitar conflictos de reservas, ya que la mayoria se encuentra en la periferia e incurriria en perdida de tiempo para el cliente.
 
-3. **Registro de Reservas**: Necesitamos un sistema que pueda registrar de manera detallada cada reserva realizada, incluyendo la fecha y hora de la reserva, el cliente que la realizó, la cancha o barbacoa a utilizar y la cantidad de horas que utilizara las instalaciones, entre otras informaciones.
+3. **Registro de Reservas**: Necesitamos un sistema que pueda registrar de manera detallada cada reserva realizada, incluyendo la fecha y hora de la reserva, el cliente que la realizó, la cancha a utilizar y la cantidad de horas que utilizara las instalaciones, entre otras informaciones.
 
 ### Objetivo:
 
@@ -257,8 +257,8 @@ Esta base de datos permite gestionar eficientemente el proceso de reserva en com
 
 - Registro de clientes y empleados involucrados en el proceso de reserva.
 - Clasificación de las reservas según su tipo.
-- Gestión de la disponibilidad de cabchas en cada complejo.
-- Registro detallado de las reservas realizadas, incluyendo la fecha, cliente, cancha/barbacoa, empleado y tipo de reserva.
+- Gestión de la disponibilidad de canchas en cada complejo.
+- Registro detallado de las reservas realizadas, incluyendo la fecha, cliente, cancha, empleado y tipo de reserva.
 
 En resumen, esta base de datos proporciona una estructura para organizar y gestionar eficientemente las operaciones de reserva en complejos de padel, lo que contribuye a mejorar el servicio ofrecido a los clientes y optimizar los tiempos muertos.
 
