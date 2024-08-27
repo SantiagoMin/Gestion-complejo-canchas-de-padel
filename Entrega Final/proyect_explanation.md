@@ -264,4 +264,6 @@ Esta base de datos permite gestionar eficientemente el proceso de reserva en com
 
 En resumen, esta base de datos proporciona una estructura para organizar y gestionar eficientemente las operaciones de reserva en complejos de padel, lo que contribuye a mejorar el servicio ofrecido a los clientes y optimizar los tiempos muertos.
 
+A futuro se creara una app, la cual incluira una pasarella de pagos y tendra como base el modelo de datos antes descripto.
+
 
